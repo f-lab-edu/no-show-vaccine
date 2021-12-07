@@ -1,0 +1,38 @@
+buildscript {
+    ext {
+        springBootVersion = '2.6.1'
+        groovyVersion = "2.5.3"
+        gradleDependencyMgmtPluginVersion = "1.0.11.RELEASE"
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "io.spring.gradle:dependency-management-plugin:${gradleDependencyMgmtPluginVersion}"
+    }
+}
+
+subprojects {
+    apply plugin: "java"
+
+    group = 'com.flab.nsv'
+    version = '0.0.1-SNAPSHOT'
+
+    sourceCompatibility = 11
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+}
