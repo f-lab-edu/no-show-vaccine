@@ -15,13 +15,42 @@ buildscript {
     }
 }
 
+plugins {
+    id 'org.springframework.boot' version '2.6.1'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'checkstyle'
+}
+
+apply plugin: 'application'
+//mainClassName = 'com.flab.nsv.'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+
+test {
+    useJUnitPlatform()
+}
+
 subprojects {
-    apply plugin: "java"
+    apply plugin: 'java'
+    apply plugin: 'checkstyle'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
 
     group = 'com.flab.nsv'
     version = '0.0.1-SNAPSHOT'
 
-    sourceCompatibility = 11
+    compileJava.options.encoding = 'UTF-8'
+    compileTestJava.options.encoding = 'UTF-8'
+
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 
     repositories {
         mavenCentral()
@@ -31,8 +60,14 @@ subprojects {
 
     }
 
+    checkstyle {
+        toolVersion = '9.2'
+        configFile = file("${rootDir}/config/checkstyle/naver-checkstyle-rules.xml")
+//        ignoreFailures = false
+//        maxWarnings = 0
+    }
+
     test {
         useJUnitPlatform()
     }
-
 }
