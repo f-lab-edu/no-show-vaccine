@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="no-show-vaccine.api.main/Hibernate" uuid="b3a0b518-7811-4104-a702-5006921cb2c1">
+      <driver-ref>greenplum</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/nsv</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="nsv@localhost" uuid="2c3d3204-a5a6-463f-891c-6cca959feb3a">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/nsv</jdbc-url>
+    </data-source>
+  </component>
+</project>
