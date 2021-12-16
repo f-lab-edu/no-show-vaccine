@@ -9,19 +9,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Builder
 @Getter
+@Builder
 @ToString
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Member {
 	private Long id;
 	private String username;
 	private String password;
 	private String name;
-	private String dateOfBirth;
+	private String birth;
 	private char gender;
-	private String phoneNumber;
-	private LocalDateTime regAt;
-	private LocalDateTime modAt;
+	private String telephone;
+	private char noShow;
+	private LocalDateTime lastUpdate;
 }

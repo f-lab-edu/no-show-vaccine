@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.flab.nsv.mapper.MemberMapper">
-    <select id="findByUsername" parameterType="String" resultType="com.flab.nsv.domain.member.Member">
+    <select id="findByUsername" parameterType="String" resultType="Member">
         select *
         from noshowvaccine.member
         where username = #{username}
@@ -18,11 +18,11 @@
             )
     </select>
 
-    <insert id="insertMember" useGeneratedKeys="true" keyProperty="id" parameterType="com.flab.nsv.domain.member.Member">
-        insert into noshowvaccine.member (username, password, name, date_of_birth, gender,
-                          phone_number, reg_at, mod_at)
-        values (#{username}, #{password}, #{name}, #{date_of_birth}, #{gender}, #{phone_number},
-                #{reg_at}, #{mod_at})
+    <insert id="insertMember" useGeneratedKeys="true" keyProperty="id" parameterType="Member">
+        insert into noshowvaccine.member (username, password, name, birth, gender,
+                          telephone, noshow, last_update)
+        values (#{username}, #{password}, #{name}, #{birth}, #{gender}, #{telephone},
+                #{noshow}, #{last_update})
     </insert>
 
     <delete id="deleteMemberByUsername" parameterType="String">

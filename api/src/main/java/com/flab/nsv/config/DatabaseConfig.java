@@ -25,6 +25,7 @@ public class DatabaseConfig {
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource);
+		sqlSessionFactoryBean.setTypeAliasesPackage("com.flab.nsv.domain");
 		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
 		return sqlSessionFactoryBean.getObject();
 	}
