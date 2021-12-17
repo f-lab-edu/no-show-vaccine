@@ -20,9 +20,9 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id 'checkstyle'
+    id 'application'
 }
 
-apply plugin: 'application'
 //mainClassName = 'com.flab.nsv.'
 
 repositories {
