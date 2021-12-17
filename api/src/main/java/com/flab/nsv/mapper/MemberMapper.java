@@ -1,16 +1,20 @@
 package com.flab.nsv.mapper;
 
+import java.util.Optional;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.flab.nsv.domain.member.Member;
 
 @Mapper
 public interface MemberMapper {
-	Member findByUsername(String username);
+	Optional<Member> getByUsername(String username);
 
-	Boolean existsByUsername(String username);
+	Optional<Member> getById(long id);
 
-	long insertMember(Member member);
+	long createMember(Member member);
+
+	void updateMember(Member member);
 
 	long deleteMemberByUsername(String username);
 }
