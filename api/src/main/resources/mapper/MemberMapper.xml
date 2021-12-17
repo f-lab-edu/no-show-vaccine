@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.flab.nsv.mapper.MemberMapper">
+    <select id="findByUsername" parameterType="String" resultType="Member">
+        select *
+        from noshowvaccine.member
+        where username = #{username}
+    </select>
+
+    <select id="ExistByUsername" parameterType="String" resultType="boolean">
+        select exists(
+            select 1
+            from noshowvaccine.member
+            where username = #{username}
+            )
+    </select>
+
+    <insert id="insertMember" useGeneratedKeys="true" keyProperty="id" parameterType="Member">
+        insert into noshowvaccine.member (username, password, name, birth, gender,
+                          telephone, noshow, last_update)
+        values (#{username}, #{password}, #{name}, #{birth}, #{gender}, #{telephone},
+                #{noshow}, #{last_update})
+    </insert>
+
+    <delete id="deleteMemberByUsername" parameterType="String">
+        delete
+        from noshowvaccine.member
+        where username = #{username}
+    </delete>
+</mapper>

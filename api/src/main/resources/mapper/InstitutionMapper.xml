@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.flab.nsv.mapper.InstitutionMapper">
+    <select id="findNearInstitutions" parameterType="map" resultType="Institution">
+        <![CDATA[
+        select *
+        from noshowvaccine.institution as inst
+        left join noshowvaccine.location as loc on inst.locatoin_id = loc.id
+        where earth_distance(ll_to_earth(#{curLatitude},#{curLongitude}, ll_to_earth(loc.latitude, loc.longitude)) < #{radius})
+        ]]>
+    </select>
+</mapper>
