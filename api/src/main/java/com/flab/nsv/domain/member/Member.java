@@ -22,6 +22,7 @@ public class Member {
 	private String birth;
 	private char gender;
 	private String telephone;
+	private int shot;
 	private char noShow;
 	private LocalDateTime lastUpdate;
 }
