@@ -1,5 +1,9 @@
 package com.flab.nsv.domain.reservation;
 
+import com.flab.nsv.domain.institution.Institution;
+import com.flab.nsv.domain.member.Member;
+import com.flab.nsv.domain.vaccine.Vaccine;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +18,9 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Reservation {
 	private Long id;
+	private Member member;
+	private Institution institution;
+	private Vaccine vaccine;
 	private String date;
-	// private int status;
+	private int status;
 }
