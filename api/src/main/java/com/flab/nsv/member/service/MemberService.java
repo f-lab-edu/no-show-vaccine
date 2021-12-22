@@ -4,10 +4,11 @@ import org.springframework.stereotype.Service;
 
 import com.flab.nsv.domain.member.Member;
 import com.flab.nsv.member.dto.CreateMemberRequestDto;
-import com.flab.nsv.mapper.MemberMapper;
 import com.flab.nsv.member.dto.UpdateMemberRequestDto;
 import com.flab.nsv.member.exception.DuplicatedUsernameException;
 import com.flab.nsv.member.exception.NotFoundMemberException;
+import com.flab.nsv.system.authentication.EncryptService;
+import com.flab.nsv.system.mapper.MemberMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,12 +16,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemberService {
 	private final MemberMapper memberMapper;
+	private final EncryptService encryptService;
 
 	public void joinMember(CreateMemberRequestDto createMemberRequestDto) {
 		memberMapper.getByUsername(createMemberRequestDto.getUsername()).ifPresent(member -> {
 			throw new DuplicatedUsernameException();
 		});
-		Member member = createMemberRequestDto.toEntity();
+		String encryptedPassword = encryptService.encrypt(createMemberRequestDto.getPassword());
+		Member member = createMemberRequestDto.toEntity(encryptedPassword);
 		memberMapper.createMember(member);
 	}
 
@@ -34,8 +37,10 @@ public class MemberService {
 
 	public void updateMember(long id, UpdateMemberRequestDto updateMemberRequestDto) {
 		Member member = memberMapper.getById(id).orElseThrow(NotFoundMemberException::new);
-
-		updateMemberRequestDto.getUpdatePassword().ifPresent(member::changePassword);
+		updateMemberRequestDto.getUpdatePassword().ifPresent(updatePassword -> {
+			String encryptedPassword = encryptService.encrypt(updatePassword);
+			member.changePassword(encryptedPassword);
+		});
 		updateMemberRequestDto.getUpdateTelephone().ifPresent(member::changeTelephone);
 		memberMapper.updateMember(member);
 	}
