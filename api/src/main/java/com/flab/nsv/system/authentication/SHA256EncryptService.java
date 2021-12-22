@@ -18,10 +18,10 @@ public class SHA256EncryptService implements EncryptService {
 			for (byte encoder : encoders) {
 				sb.append(Integer.toString((encoder & 0xff) + 0x100, 16).substring(1));
 			}
-
 			return sb.toString();
 		} catch (Exception e) {
 			throw new RuntimeException();
 		}
 	}
 }
+

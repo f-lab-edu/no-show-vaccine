@@ -39,6 +39,7 @@ public class CreateMemberRequestDto {
 			message = "010-0000-0000 형식으로 입력하세요.")
 	private String telephone;
 
+
 	public Member toEntity(String encryptPassword) {
 		Member member = Member.builder()
 			.username(this.username)

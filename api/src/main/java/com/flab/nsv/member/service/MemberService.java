@@ -18,12 +18,14 @@ public class MemberService {
 	private final MemberMapper memberMapper;
 	private final EncryptService encryptService;
 
+
 	public void joinMember(CreateMemberRequestDto createMemberRequestDto) {
 		memberMapper.getByUsername(createMemberRequestDto.getUsername()).ifPresent(member -> {
 			throw new DuplicatedUsernameException();
 		});
 		String encryptedPassword = encryptService.encrypt(createMemberRequestDto.getPassword());
 		Member member = createMemberRequestDto.toEntity(encryptedPassword);
+
 		memberMapper.createMember(member);
 	}
 
