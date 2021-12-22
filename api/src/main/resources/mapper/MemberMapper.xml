@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.flab.nsv.mapper.MemberMapper">
+<mapper namespace="com.flab.nsv.system.mapper.MemberMapper">
     <select id="getByUsername" parameterType="String" resultType="Member">
         select id, username, password, name, birth, gender, telephone, noshow, shot, vaccination_date, last_update
         from noshowvaccine.member
@@ -14,6 +14,13 @@
         select id, username, password, name, birth, gender, telephone, noshow, shot, vaccination_date, last_update
         from noshowvaccine.member
         where id = #{id}
+    </select>
+
+    <select id="getByUsernameAndPassword" parameterType="map" resultType="Member">
+        select id, username, password, name, birth, gender, telephone, noshow, shot, vaccination_date, last_update
+        from noshowvaccine.member
+        where username = #{username}
+        and password = #{password}
     </select>
 
     <insert id="createMember" useGeneratedKeys="true" keyProperty="id" parameterType="Member">

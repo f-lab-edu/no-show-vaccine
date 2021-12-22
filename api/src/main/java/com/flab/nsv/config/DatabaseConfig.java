@@ -13,7 +13,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-@MapperScan(value = "com.flab.nsv.mapper")   // mapper.xml 파일들이 바라볼 패키지 위치 지정
+@MapperScan(value = "com.flab.nsv.system.mapper")   // mapper.xml 파일들이 바라볼 패키지 위치 지정
 public class DatabaseConfig {
 
 	@Bean
