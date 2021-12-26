@@ -12,7 +12,7 @@ CREATE TABLE noshowvaccine.member
 (
 	id SERIAL PRIMARY KEY,
 	username VARCHAR(20) UNIQUE NOT NULL,
-	password VARCHAR(20) NOT NULL,
+	password VARCHAR(200) NOT NULL,
 	name VARCHAR(10) NOT NULL,
 	birth VARCHAR(10) NOT NULL,
 	gender char(1) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE noshowvaccine.institution
 	id SERIAL PRIMARY KEY,
     locatoin_id integer REFERENCES noshowvaccine.location(id),
 	username VARCHAR(20) UNIQUE NOT NULL,
-	password VARCHAR(20) NOT NULL,
+	password VARCHAR(200) NOT NULL,
 	name VARCHAR(20) NOT NULL,
 	corp_num VARCHAR(20) NOT NULL,
 	telephone VARCHAR(20) NOT NULL,
