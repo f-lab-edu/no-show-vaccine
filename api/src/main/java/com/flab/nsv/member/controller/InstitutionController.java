@@ -38,6 +38,7 @@ public class InstitutionController {
 	}
 
 	@PutMapping("/{id}")
+	@ResponseStatus(HttpStatus.OK)
 	public void updateInstitution(
 		@PathVariable("id") final long id,
 		@Valid @RequestBody final UpdateInstitutionRequestDto updateInstituionRequestDto) {

@@ -28,12 +28,18 @@ public class Institution {
 	private double latitude;
 	private LocalDateTime lastUpdate;
 
-	public void Location(BigDecimal lng, BigDecimal lat) {
+	public void changeTelephone(String telephone) { this.telephone = telephone; }
+
+	public void changeOpenTime(String openTime) { this.openTime = openTime; }
+
+	public void changeClosingTime(String closingTime) { this.closingTime = closingTime; }
+
+	public void location(BigDecimal lng, BigDecimal lat) {
 		longitude = lng.doubleValue();
 		latitude = lat.doubleValue();
 	}
 
-	public void Location(String lng, String lat) {
+	public void location(String lng, String lat) {
 		longitude = Double.parseDouble(lng);
 		latitude = Double.parseDouble(lat);
 	}
