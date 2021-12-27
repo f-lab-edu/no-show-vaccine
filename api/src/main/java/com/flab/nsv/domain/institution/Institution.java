@@ -1,5 +1,6 @@
 package com.flab.nsv.domain.institution;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import lombok.AccessLevel;
@@ -19,11 +20,21 @@ public class Institution {
 	private String username;
 	private String password;
 	private String name;
-	private String corpNum;
 	private String telephone;
 	private String address;
 	private String openTime;
-	private String closeTime;
-	private Location location;
+	private String closingTime;
+	private double longitude;
+	private double latitude;
 	private LocalDateTime lastUpdate;
+
+	public void Location(BigDecimal lng, BigDecimal lat) {
+		longitude = lng.doubleValue();
+		latitude = lat.doubleValue();
+	}
+
+	public void Location(String lng, String lat) {
+		longitude = Double.parseDouble(lng);
+		latitude = Double.parseDouble(lat);
+	}
 }
