@@ -22,5 +22,4 @@ public class Reservation {
 	private Institution institution;
 	private Vaccine vaccine;
 	private String date;
-	private int status;
 }
