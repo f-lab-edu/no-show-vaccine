@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.flab.nsv.system.mapper.UserMapper">
+    <select id="getByUsername" parameterType="String" resultType="com.flab.nsv.common.user.dto.UserResponseDto">
+        select id, username, password
+        from noshowvaccine.user
+        where username = #{username}
+    </select>
+
+    <select id="getById" parameterType="Long" resultType="com.flab.nsv.common.user.dto.UserResponseDto">
+        select id, username, password
+        from noshowvaccine.user
+        where id = #{userId}
+    </select>
+
+    <select id="getByUsernameAndPassword" parameterType="map" resultType="com.flab.nsv.common.user.dto.UserResponseDto">
+        select id, username, password
+        from noshowvaccine.user
+        where username = #{username}
+          and password = #{password}
+    </select>
+
+    <insert id="createUser" parameterType="map">
+        <selectKey keyProperty="id" resultType="Long" order="AFTER">
+            select nextval('noshowvaccine.user_id_seq')
+        </selectKey>
+        insert into noshowvaccine.user (username, password)
+        values (#{username}, #{password})
+    </insert>
+
+    <update id="updateUserPassword" parameterType="map">
+        UPDATE noshowvaccine.user
+        SET password = #{password}
+        WHERE id = #{userId}
+    </update>
+</mapper>

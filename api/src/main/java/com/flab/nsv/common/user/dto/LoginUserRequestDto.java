@@ -1,8 +1,8 @@
-package com.flab.nsv.member.dto;
+package com.flab.nsv.common.user.dto;
 
 import javax.validation.constraints.NotBlank;
 
-import com.flab.nsv.domain.member.Member;
+import com.flab.nsv.domain.common.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,15 +13,15 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginMemberRequestDto {
+public class LoginUserRequestDto {
 	@NotBlank(message = "아이디는 빈 값일 수 없습니다")
 	private String username;
 
 	@NotBlank(message = "비밀번호는 빈 값일 수 없습니다")
 	private String password;
 
-	public Member toEntity() {
-		return Member.builder()
+	public User toEntity() {
+		return User.builder()
 			.username(this.username)
 			.password(this.password)
 			.build();

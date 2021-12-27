@@ -1,22 +1,21 @@
-package com.flab.nsv.domain.member;
+package com.flab.nsv.member.dto;
 
 import java.time.LocalDateTime;
 
-import lombok.AccessLevel;
+import com.flab.nsv.common.user.dto.UserResponseDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Getter
 @Builder
-@ToString
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Member {
+@NoArgsConstructor
+public class MemberResponseDto {
 	private Long id;
-	private Long userId;
+	private UserResponseDto userResponse;
 	private String name;
 	private String birth;
 	private char gender;

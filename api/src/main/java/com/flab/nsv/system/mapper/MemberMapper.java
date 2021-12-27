@@ -1,21 +1,16 @@
 package com.flab.nsv.system.mapper;
 
-import java.util.Optional;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.flab.nsv.domain.member.Member;
+import com.flab.nsv.member.dto.MemberResponseDto;
 
 @Mapper
 public interface MemberMapper {
-	Optional<Member> getById(long id);
+	MemberResponseDto getById(long userId);
 
-	Optional<Member> getByUsernameAndPassword(@Param("username")String username, @Param("password")String password);
+	void createMember(Member member);
 
-	Optional<Member> getByUsername(String username);
-
-	long createMember(Member member);
-
-	void updateMember(Member member);
+	void updateMemberTelephone(@Param("userId")Long userId, @Param("telephone")String telephone);
 }

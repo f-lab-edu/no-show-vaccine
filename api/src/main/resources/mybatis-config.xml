@@ -7,6 +7,7 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <typeAliases>
+        <typeAlias type="com.flab.nsv.domain.common.User" alias="User"/>
         <typeAlias type="com.flab.nsv.domain.member.Member" alias="Member"/>
         <typeAlias type="com.flab.nsv.domain.institution.Institution" alias="Institution"/>
         <typeAlias type="com.flab.nsv.domain.institution.Location" alias="Location"/>
@@ -14,6 +15,7 @@
     <typeHandlers>
     </typeHandlers>
     <mappers>
+        <mapper resource="mapper/UserMapper.xml"/>
         <mapper resource="mapper/MemberMapper.xml"/>
         <mapper resource="mapper/InstitutionMapper.xml"/>
     </mappers>
