@@ -2,6 +2,8 @@ package com.flab.nsv.domain.member;
 
 import java.io.Serializable;
 
+import com.flab.nsv.enums.UserRole;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,8 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthMember implements Serializable {
-	private Long id;
 	private String username;
-	private int shotCount;
-	private char noShow;
+	private UserRole role;
 }

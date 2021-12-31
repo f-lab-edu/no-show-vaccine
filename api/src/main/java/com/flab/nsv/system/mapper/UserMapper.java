@@ -15,7 +15,5 @@ public interface UserMapper {
 
 	Optional<UserResponseDto> getByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 
-	Long createUser(@Param("username") String username, @Param("password") String password);
-
 	void updateUserPassword(@Param("userId") Long userId, @Param("password") String password);
 }

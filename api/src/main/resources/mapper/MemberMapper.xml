@@ -6,45 +6,34 @@
 <mapper namespace="com.flab.nsv.system.mapper.MemberMapper">
 
     <resultMap id="MemberResponse" type="com.flab.nsv.member.dto.MemberResponseDto">
-        <id property="id" column="id" javaType="long"/>
         <result property="name" column="name"/>
         <result property="birth" column="birth"/>
         <result property="gender" column="gender"/>
         <result property="telephone" column="telephone"/>
-        <result property="noShow" column="noshow"/>
-        <result property="shotCount" column="shot"/>
+        <result property="noShow" column="no_show"/>
+        <result property="shotCount" column="shot_count"/>
         <result property="vaccinationDate" column="vaccination_date"/>
         <result property="lastUpdate" column="last_update"/>
         <association property="userResponse" javaType="com.flab.nsv.common.user.dto.UserResponseDto">
-            <id column="id" property="id"/>
+            <id column="user_id" property="userId"/>
             <result column="username" property="username"/>
             <result column="password" property="password"/>
+            <result column="role" property="role"/>
         </association>
     </resultMap>
 
     <select id="getById" parameterType="long" resultMap="MemberResponse">
-        select m.id, u.id, u.username, u.password, m.name, m.birth, m.gender, m.telephone, m.noshow, m.shot, m.vaccination_date, m.last_update
-        from noshowvaccine.member as m
-        left join noshowvaccine.user as u on m.user_id = u.id
+        select u.username, u.password, m.name, m.birth, m.gender, m.telephone, m.no_show, m.shot_count, m.vaccination_date, m.last_update
+        from member as m
+        left join users as u on m.user_id = u.user_id
         where m.user_id = #{userId}
     </select>
 
-    <insert id="createMember" parameterType="com.flab.nsv.domain.member.Member">
-        insert into noshowvaccine.member (user_id, name, birth, gender,
-                          telephone, noshow, shot, vaccination_date, last_update)
-        values (#{userId}, #{name}, #{birth}, #{gender}, #{telephone}, '0', 0, null, now())
-    </insert>
-
     <update id="updateMemberTelephone" parameterType="map">
-        UPDATE noshowvaccine.member
+        UPDATE member
         SET telephone = #{telephone},
             last_update = now()
         WHERE user_id=#{userId}
     </update>
 
-    <delete id="deleteMemberByUsername" parameterType="String">
-        delete
-        from noshowvaccine.member
-        where username = #{username}
-    </delete>
 </mapper>

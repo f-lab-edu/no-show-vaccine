@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberResponseDto {
-	private Long id;
 	private UserResponseDto userResponse;
 	private String name;
 	private String birth;

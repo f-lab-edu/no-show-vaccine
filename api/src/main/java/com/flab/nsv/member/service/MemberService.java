@@ -1,11 +1,17 @@
 package com.flab.nsv.member.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
-import com.flab.nsv.domain.common.UserRole;
+import com.flab.nsv.enums.UserRole;
 import com.flab.nsv.domain.member.Member;
-import com.flab.nsv.member.dto.MemberResponseDto;
+import com.flab.nsv.domain.member.MemberRepository;
+import com.flab.nsv.member.exception.DuplicatedUsernameException;
+import com.flab.nsv.member.exception.NotFoundMemberException;
+import com.flab.nsv.system.authentication.EncryptService;
 import com.flab.nsv.system.mapper.MemberMapper;
+import com.flab.nsv.system.mapper.UserMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,15 +19,21 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemberService {
 	private final MemberMapper memberMapper;
+	private final UserMapper userMapper;
+	private final MemberRepository memberRepository;
+	private final EncryptService encryptService;
 
+	@Transactional
 	public void createMember(Member member) {
-		memberMapper.createMember(member);
+		userMapper.getByUsername(member.getUsername()).ifPresent(u -> {
+			throw new DuplicatedUsernameException();
+		});
+		memberRepository.save(member);
 	}
 
-	public MemberResponseDto getById(long id) {
-		return memberMapper.getById(id);
-	}
 
+
+	@Transactional
 	public void updateMemberTelephone(long userId, String telephone) {
 		memberMapper.updateMemberTelephone(userId, telephone);
 	}

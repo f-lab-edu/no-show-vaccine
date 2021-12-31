@@ -2,8 +2,6 @@ package com.flab.nsv.common.user.dto;
 
 import javax.validation.constraints.NotBlank;
 
-import com.flab.nsv.domain.common.User;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,11 +17,4 @@ public class LoginUserRequestDto {
 
 	@NotBlank(message = "비밀번호는 빈 값일 수 없습니다")
 	private String password;
-
-	public User toEntity() {
-		return User.builder()
-			.username(this.username)
-			.password(this.password)
-			.build();
-	}
 }
