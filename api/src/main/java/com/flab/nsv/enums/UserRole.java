@@ -1,4 +1,4 @@
-package com.flab.nsv.domain.common;
+package com.flab.nsv.enums;
 
 /**
  * MEMBER: 일반 회
@@ -6,5 +6,7 @@ package com.flab.nsv.domain.common;
  * ADMIN: 관리자
  */
 public enum UserRole {
-	MEMBER, INSTITUTION, ADMIN
+	MEMBER,
+	INSTITUTION,
+	ADMIN;
 }
