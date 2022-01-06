@@ -15,6 +15,7 @@ public class StockService {
 	private final StockMapper stockMapper;
 
 	public void inputData(CreateStockRequestDto createStockRequestDto) {
+		Stock stock = stockMapper.toEntity(createStockRequestDto);
 	}
 
 	public Stock getByInstitutionId(long id) {
