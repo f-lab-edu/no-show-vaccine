@@ -1,17 +1,19 @@
-package com.flab.nsv.domain.member;
-
-import java.io.Serializable;
+package com.flab.nsv.common.user.dto;
 
 import com.flab.nsv.enums.UserRole;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
+@Builder
 @AllArgsConstructor
-public class AuthMember implements Serializable {
+@NoArgsConstructor
+public class UserResponseDto {
+	private Long userId;
 	private String username;
+	private String password;
 	private UserRole role;
 }

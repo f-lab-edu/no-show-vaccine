@@ -4,44 +4,36 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.flab.nsv.system.mapper.MemberMapper">
-    <select id="getByUsername" parameterType="String" resultType="Member">
-        select id, username, password, name, birth, gender, telephone, noshow, shot, vaccination_date, last_update
-        from noshowvaccine.member
-        where username = #{username}
+
+    <resultMap id="MemberResponse" type="com.flab.nsv.member.dto.MemberResponseDto">
+        <result property="name" column="name"/>
+        <result property="birth" column="birth"/>
+        <result property="gender" column="gender"/>
+        <result property="telephone" column="telephone"/>
+        <result property="noShow" column="no_show"/>
+        <result property="shotCount" column="shot_count"/>
+        <result property="vaccinationDate" column="vaccination_date"/>
+        <result property="lastUpdate" column="last_update"/>
+        <association property="userResponse" javaType="com.flab.nsv.common.user.dto.UserResponseDto">
+            <id column="user_id" property="userId"/>
+            <result column="username" property="username"/>
+            <result column="password" property="password"/>
+            <result column="role" property="role"/>
+        </association>
+    </resultMap>
+
+    <select id="getById" parameterType="long" resultMap="MemberResponse">
+        select u.username, u.password, m.name, m.birth, m.gender, m.telephone, m.no_show, m.shot_count, m.vaccination_date, m.last_update
+        from member as m
+        left join users as u on m.user_id = u.user_id
+        where m.user_id = #{userId}
     </select>
 
-    <select id="getById" parameterType="long" resultType="Member">
-        select id, username, password, name, birth, gender, telephone, noshow, shot, vaccination_date, last_update
-        from noshowvaccine.member
-        where id = #{id}
-    </select>
-
-    <select id="getByUsernameAndPassword" parameterType="map" resultType="Member">
-        select id, username, password, name, birth, gender, telephone, noshow, shot, vaccination_date, last_update
-        from noshowvaccine.member
-        where username = #{username}
-        and password = #{password}
-    </select>
-
-    <insert id="createMember" useGeneratedKeys="true" keyProperty="id" parameterType="Member">
-        insert into noshowvaccine.member (username, password, name, birth, gender,
-                          telephone, noshow, shot, vaccination_date, last_update)
-        values (#{username}, #{password}, #{name}, #{birth}, #{gender}, #{telephone},
-                '0', 0, null, now())
-    </insert>
-
-    <update id="updateMember" parameterType="Member">
-        UPDATE noshowvaccine.member
-        SET password = #{password},
-            telephone = #{telephone},
+    <update id="updateMemberTelephone" parameterType="map">
+        UPDATE member
+        SET telephone = #{telephone},
             last_update = now()
-        WHERE id=#{id}
+        WHERE user_id=#{userId}
     </update>
 
-
-    <delete id="deleteMemberByUsername" parameterType="String">
-        delete
-        from noshowvaccine.member
-        where username = #{username}
-    </delete>
 </mapper>
